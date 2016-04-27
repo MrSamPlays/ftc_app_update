@@ -61,7 +61,36 @@ public class TestOp extends LinearOpMode {
         return br[index];
     }
 
-    
+    //For left: (opposite for right)
+    //False- left stick
+    //True- right stick
+    private boolean controllerLocation;
+    private boolean lastSwap=reversed;
+
+    //Powers- confusing, remember to explain these.
+    float holder1;
+    float holder2;
+
+    private void getLocation(){
+        if(controllerLocation){
+            holder1=gamepad1.left_stick_y;
+            holder2=gamepad1.right_stick_y;
+        }else{
+            holder2=gamepad1.left_stick_y;
+            holder1=gamepad1.right_stick_y;
+        }
+    }
+
+    private void handleUpdates(){
+        if(reversed!=lastSwap){
+            controllerLocation=!controllerLocation;
+        }
+
+        getLocation();
+
+        BL.setPower(holder1);
+        BL.setPower(holder2);
+    }
 
     @Override
     public void runOpMode() throws InterruptedException {

@@ -21,6 +21,7 @@ public class TestOp extends LinearOpMode {
     private LegacyModule l;
     private ColorSensor c;
     private HiTechnicNxtColorSensor e;
+    private boolean reversed = false;
 
     public static LegacyModule getLegMod() {
         return legMod;
@@ -65,8 +66,14 @@ public class TestOp extends LinearOpMode {
         initialize();
         waitForStart();
         while (opModeIsActive()) {
-            BL.setPower(gamepad1.left_stick_y);
-            BR.setPower(gamepad1.right_stick_y);
+            if (!reversed) {
+                BL.setPower(gamepad1.left_stick_y);
+                BR.setPower(gamepad1.right_stick_y);
+            } else {
+                BR.setPower(gamepad1.left_stick_y);
+                BL.setPower(gamepad1.right_stick_y);
+            }
+
             // BL.setPower(scaleInput(gamepad1.left_stick_y));
             // BR.setPower(scaleInput(gamepad1.right_stick_y));
             if (gamepad1.a) {
@@ -85,12 +92,22 @@ public class TestOp extends LinearOpMode {
                 }
                 sleep(100);
             }
-
+            if (gamepad1.guide) {
+                if (!reversed) {
+                    BL.setDirection(DcMotor.Direction.FORWARD);
+                    BR.setDirection(DcMotor.Direction.REVERSE);
+                    reversed = true;
+                }
+                else {
+                    BR.setDirection(DcMotor.Direction.FORWARD);
+                    BL.setDirection(DcMotor.Direction.REVERSE);
+                    reversed = false;
+                }
+            }
             telemetry.addData("Touch", TouchSensor.getPressed());
-
+            telemetry.addData("Reversed?", reversed);
             telemetry.addData("Colour sensor0", legMod.readAnalog(5)[0] + "\n" + Integer.toHexString(c.argb()));
             telemetry.addData("Colour sensor1", legMod.readAnalog(5)[1] + "\n" + Integer.toHexString(c.argb()));
-
             telemetry.addData("HtColorSensor", "#" + Integer.toHexString(e.argb()));
         }
     }

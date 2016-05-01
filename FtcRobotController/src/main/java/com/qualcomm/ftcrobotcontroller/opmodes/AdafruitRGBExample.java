@@ -44,7 +44,7 @@ import com.qualcomm.robotcore.hardware.DigitalChannelController;
 
 /*
  *
- * This is an example LinearOpMode that shows how to use
+ * This is an example CustomOpMode that shows how to use
  * the Adafruit RGB Sensor.  It assumes that the I2C
  * cable for the sensor is connected to an I2C port on the
  * Core Device Interface Module.

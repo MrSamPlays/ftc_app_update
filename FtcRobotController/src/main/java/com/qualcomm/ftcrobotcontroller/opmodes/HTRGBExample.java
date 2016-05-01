@@ -42,7 +42,7 @@ import com.qualcomm.robotcore.hardware.ColorSensor;
 
 /*
  *
- * This is an example LinearOpMode that shows how to use
+ * This is an example CustomOpMode that shows how to use
  * a legacy (NXT-compatible) Hitechnic Color Sensor v2.
  *
  * The op mode assumes that the color sensor

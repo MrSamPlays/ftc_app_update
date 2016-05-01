@@ -2,31 +2,47 @@ package com.qualcomm.ftcrobotcontroller.opmodes;
 
 import com.qualcomm.ftcrobotcontroller.drivers.TouchSensor;
 import com.qualcomm.hardware.hitechnic.HiTechnicNxtColorSensor;
-import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.ColorSensor;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorController;
 import com.qualcomm.robotcore.hardware.LegacyModule;
 
 
+
 /**
  * Created by sam on 15-Mar-16.
  */
 
-public class TestOp extends LinearOpMode {
+public class TestOp extends CustomOpMode {
     private static LegacyModule legMod;
     boolean LEDisEnabled = false;
     private DcMotor BL;
     private DcMotor BR;
-    private LegacyModule l;
     private ColorSensor c;
     private HiTechnicNxtColorSensor e;
     private boolean reversed = false;
-
+    Thread t = null;
+    long startTime;
     public static LegacyModule getLegMod() {
         return legMod;
     }
-
+    class ShutDownIn extends Thread {
+        TestOp t;
+        public ShutDownIn(TestOp e) {
+            this.t = e;
+        }
+        @Override
+        public void run() {
+            System.out.println("Shutdown Sequence initialized");
+            while (true) {
+                if (System.currentTimeMillis() > startTime + 120000) {
+                    System.out.println("SHUTTING DOWN");
+                    break;
+                }
+            }
+            t.stop();
+        }
+    }
     void initialize() {
         BL = hardwareMap.dcMotor.get("m1");
         BR = hardwareMap.dcMotor.get("m2");
@@ -60,11 +76,15 @@ public class TestOp extends LinearOpMode {
         }
         return br[index];
     }
-
     @Override
     public void runOpMode() throws InterruptedException {
         initialize();
         waitForStart();
+        startTime = System.currentTimeMillis();
+        t = new ShutDownIn(this);
+        t.setDaemon(true);
+
+        t.start();
         while (opModeIsActive()) {
             if (!reversed) {
                 BL.setPower(gamepad1.left_stick_y);
@@ -73,7 +93,6 @@ public class TestOp extends LinearOpMode {
                 BR.setPower(gamepad1.left_stick_y);
                 BL.setPower(gamepad1.right_stick_y);
             }
-
             // BL.setPower(scaleInput(gamepad1.left_stick_y));
             // BR.setPower(scaleInput(gamepad1.right_stick_y));
             if (gamepad1.a) {
@@ -110,5 +129,11 @@ public class TestOp extends LinearOpMode {
             telemetry.addData("Colour sensor1", legMod.readAnalog(5)[1] + "\n" + Integer.toHexString(c.argb()));
             telemetry.addData("HtColorSensor", "#" + Integer.toHexString(e.argb()));
         }
+    }
+    @Override
+    public void stop() {
+        BL.setPower(0);
+        BR.setPower(0);
+        super.stop();
     }
 }

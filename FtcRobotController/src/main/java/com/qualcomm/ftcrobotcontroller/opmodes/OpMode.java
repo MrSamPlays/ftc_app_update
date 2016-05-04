@@ -1,37 +1,31 @@
 package com.qualcomm.ftcrobotcontroller.opmodes;
 
 import com.qualcomm.ftcrobotcontroller.drivers.TouchSensor;
-import com.qualcomm.ftcrobotcontroller.tools.MainOpMode;
 import com.qualcomm.hardware.hitechnic.HiTechnicNxtColorSensor;
+import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.ColorSensor;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorController;
 import com.qualcomm.robotcore.hardware.LegacyModule;
 
-
 /**
- * Created by sam on 15-Mar-16.
+ * Created by medude on 4/28/16.
  */
 
-public class TestOp extends MainOpMode {
+public class OpMode extends LinearOpMode {
     private static LegacyModule legMod;
-    boolean LEDisEnabled = false;
-    private DcMotor BL;
-    private DcMotor BR;
-    private ColorSensor c;
+    boolean LEDEnabled=false;
+    private DcMotor[] motors;
+    private ColorSensor color;
     private HiTechnicNxtColorSensor e;
-    private boolean reversed = false;
+    private boolean driveReversed=false;
 
-    public static LegacyModule getLegMod() {
-        return legMod;
-    }
+    public OpMode(String[] motorNames){
+        motors=new DcMotor[motorNames.length];
+        for(int i=0; i<motorNames.length; i++){
+            motors[i]=hardwareMap.dcMotor.get(motorNames[i]);
+        }
 
-    void initialize() {
-        BL = hardwareMap.dcMotor.get("m1");
-        BR = hardwareMap.dcMotor.get("m2");
-        c = hardwareMap.colorSensor.get("colour");
-        legMod = hardwareMap.legacyModule.get("Legacy Module 1");
-        e = new HiTechnicNxtColorSensor(legMod, 0);
         BL.setDirection(DcMotor.Direction.REVERSE);
         BL.setMode(DcMotorController.RunMode.RESET_ENCODERS);
         BR.setMode(DcMotorController.RunMode.RESET_ENCODERS);
@@ -58,6 +52,37 @@ public class TestOp extends MainOpMode {
             a.getCause();
         }
         return br[index];
+    }
+
+    //For left: (opposite for right)
+    //False- left stick
+    //True- right stick
+    private boolean controllerLocation;
+    private boolean lastSwap=reversed;
+
+    //Powers- confusing, remember to explain these.
+    float holder1;
+    float holder2;
+
+    private void getLocation(){
+        if(controllerLocation){
+            holder1=gamepad1.left_stick_y;
+            holder2=gamepad1.right_stick_y;
+        }else{
+            holder2=gamepad1.left_stick_y;
+            holder1=gamepad1.right_stick_y;
+        }
+    }
+
+    private void handleUpdates(){
+        if(reversed!=lastSwap){
+            controllerLocation=!controllerLocation;
+        }
+
+        getLocation();
+
+        BL.setPower(holder1);
+        BL.setPower(holder2);
     }
 
     @Override

@@ -43,7 +43,7 @@ import com.qualcomm.robotcore.hardware.GyroSensor;
 
 /*
  *
- * This is an example LinearOpMode that shows how to use
+ * This is an example CustomOpMode that shows how to use
  * the Modern Robotics Gyro.
  *
  * The op mode assumes that the gyro sensor

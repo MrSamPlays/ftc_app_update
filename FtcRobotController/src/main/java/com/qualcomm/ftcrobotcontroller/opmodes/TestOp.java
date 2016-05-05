@@ -1,8 +1,8 @@
 package com.qualcomm.ftcrobotcontroller.opmodes;
 
 import com.qualcomm.ftcrobotcontroller.drivers.TouchSensor;
-import com.qualcomm.ftcrobotcontroller.tools.MainOpMode;
 import com.qualcomm.hardware.hitechnic.HiTechnicNxtColorSensor;
+import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.ColorSensor;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorController;
@@ -13,11 +13,12 @@ import com.qualcomm.robotcore.hardware.LegacyModule;
  * Created by sam on 15-Mar-16.
  */
 
-public class TestOp extends MainOpMode {
+public class TestOp extends LinearOpMode {
     private static LegacyModule legMod;
     boolean LEDisEnabled = false;
     private DcMotor BL;
     private DcMotor BR;
+    private LegacyModule l;
     private ColorSensor c;
     private HiTechnicNxtColorSensor e;
     private boolean reversed = false;

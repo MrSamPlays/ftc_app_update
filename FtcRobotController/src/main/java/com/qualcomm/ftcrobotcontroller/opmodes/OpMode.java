@@ -1,4 +1,4 @@
-package com.qualcomm.ftcrobotcontroller.opmodes;
+/*package com.qualcomm.ftcrobotcontroller.opmodes;
 
 import com.qualcomm.ftcrobotcontroller.drivers.TouchSensor;
 import com.qualcomm.hardware.hitechnic.HiTechnicNxtColorSensor;
@@ -11,7 +11,7 @@ import com.qualcomm.robotcore.hardware.LegacyModule;
 /**
  * Created by medude on 4/28/16.
  */
-
+/*
 public class OpMode extends LinearOpMode {
     private static LegacyModule legMod;
     boolean LEDEnabled=false;
@@ -26,11 +26,11 @@ public class OpMode extends LinearOpMode {
             motors[i]=hardwareMap.dcMotor.get(motorNames[i]);
         }
 
-        BL.setDirection(DcMotor.Direction.REVERSE);
-        BL.setMode(DcMotorController.RunMode.RESET_ENCODERS);
-        BR.setMode(DcMotorController.RunMode.RESET_ENCODERS);
-        BL.setMode(DcMotorController.RunMode.RUN_USING_ENCODERS);
-        BR.setMode(DcMotorController.RunMode.RUN_USING_ENCODERS);
+        //BL.setDirection(DcMotor.Direction.REVERSE);
+        //BL.setMode(DcMotorController.RunMode.RESET_ENCODERS);
+        //BR.setMode(DcMotorController.RunMode.RESET_ENCODERS);
+        //BL.setMode(DcMotorController.RunMode.RUN_USING_ENCODERS);
+        //BR.setMode(DcMotorController.RunMode.RUN_USING_ENCODERS);
         legMod.enableAnalogReadMode(0);
 
         legMod.enable9v(5, true);
@@ -58,7 +58,7 @@ public class OpMode extends LinearOpMode {
     //False- left stick
     //True- right stick
     private boolean controllerLocation;
-    private boolean lastSwap=reversed;
+    //private boolean lastSwap=reversed;
 
     //Powers- confusing, remember to explain these.
     float holder1;
@@ -75,64 +75,64 @@ public class OpMode extends LinearOpMode {
     }
 
     private void handleUpdates(){
-        if(reversed!=lastSwap){
-            controllerLocation=!controllerLocation;
-        }
+        //if(reversed!=lastSwap){
+        //    controllerLocation=!controllerLocation;
+        //}
 
         getLocation();
 
-        BL.setPower(holder1);
-        BL.setPower(holder2);
+        //BL.setPower(holder1);
+        //BL.setPower(holder2);
     }
 
     @Override
     public void runOpMode() throws InterruptedException {
-        initialize();
+        //initialize();
         waitForStart();
         while (opModeIsActive()) {
-            if (!reversed) {
-                BL.setPower(gamepad1.left_stick_y);
-                BR.setPower(gamepad1.right_stick_y);
-            } else {
-                BR.setPower(gamepad1.left_stick_y);
-                BL.setPower(gamepad1.right_stick_y);
-            }
+            //if (!reversed) {
+            //    BL.setPower(gamepad1.left_stick_y);
+            //    BR.setPower(gamepad1.right_stick_y);
+            //} else {
+            //    BR.setPower(gamepad1.left_stick_y);
+            //    BL.setPower(gamepad1.right_stick_y);
+            //}
 
             // BL.setPower(scaleInput(gamepad1.left_stick_y));
             // BR.setPower(scaleInput(gamepad1.right_stick_y));
             if (gamepad1.a) {
-                BL.setMode(DcMotorController.RunMode.RESET_ENCODERS);
-                BR.setMode(DcMotorController.RunMode.RESET_ENCODERS);
-                BL.setMode(DcMotorController.RunMode.RUN_USING_ENCODERS);
-                BR.setMode(DcMotorController.RunMode.RUN_USING_ENCODERS);
+             //   BL.setMode(DcMotorController.RunMode.RESET_ENCODERS);
+             //   BR.setMode(DcMotorController.RunMode.RESET_ENCODERS);
+             //   BL.setMode(DcMotorController.RunMode.RUN_USING_ENCODERS);
+             //   BR.setMode(DcMotorController.RunMode.RUN_USING_ENCODERS);
             }
             if (gamepad1.b) {
-                if (!LEDisEnabled) {
-                    c.enableLed(true);
-                    LEDisEnabled = true;
-                } else {
-                    c.enableLed(false);
-                    LEDisEnabled = false;
+             //   if (!LEDisEnabled) {
+             //       c.enableLed(true);
+             //       LEDisEnabled = true;
+             //   } else {
+             //       c.enableLed(false);
+             //       LEDisEnabled = false;
                 }
                 sleep(100);
             }
             if (gamepad1.guide) {
-                if (!reversed) {
-                    BL.setDirection(DcMotor.Direction.FORWARD);
-                    BR.setDirection(DcMotor.Direction.REVERSE);
-                    reversed = true;
+              //  if (!reversed) {
+              //      BL.setDirection(DcMotor.Direction.FORWARD);
+              //      BR.setDirection(DcMotor.Direction.REVERSE);
+              //      reversed = true;
                 }
                 else {
-                    BR.setDirection(DcMotor.Direction.FORWARD);
-                    BL.setDirection(DcMotor.Direction.REVERSE);
-                    reversed = false;
+              //      BR.setDirection(DcMotor.Direction.FORWARD);
+              //      BL.setDirection(DcMotor.Direction.REVERSE);
+              //      reversed = false;
                 }
             }
-            telemetry.addData("Touch", TouchSensor.getPressed());
-            telemetry.addData("Reversed?", reversed);
-            telemetry.addData("Colour sensor0", legMod.readAnalog(5)[0] + "\n" + Integer.toHexString(c.argb()));
-            telemetry.addData("Colour sensor1", legMod.readAnalog(5)[1] + "\n" + Integer.toHexString(c.argb()));
-            telemetry.addData("HtColorSensor", "#" + Integer.toHexString(e.argb()));
+            //telemetry.addData("Touch", TouchSensor.getPressed());
+           // telemetry.addData("Reversed?", reversed);
+            //telemetry.addData("Colour sensor0", legMod.readAnalog(5)[0] + "\n" + Integer.toHexString(c.argb()));
+           // telemetry.addData("Colour sensor1", legMod.readAnalog(5)[1] + "\n" + Integer.toHexString(c.argb()));
+           // telemetry.addData("HtColorSensor", "#" + Integer.toHexString(e.argb()));
         }
     }
-}
+}*/

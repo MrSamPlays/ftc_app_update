@@ -47,7 +47,7 @@ public abstract class CustomOpMode extends OpMode {
 
     public final void init() {
         this.a = new CustomOpMode.a(this);
-        this.b = new Thread(this.a, "Linear OpMode Helper");
+        this.b = new Thread(this.a, "Custom OpMode Helper");
         this.b.start();
     }
 

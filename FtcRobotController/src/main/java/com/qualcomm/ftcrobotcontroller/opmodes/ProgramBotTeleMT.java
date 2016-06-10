@@ -1,5 +1,6 @@
 package com.qualcomm.ftcrobotcontroller.opmodes;
 
+import com.qualcomm.ftcrobotcontroller.opmodes.builtins.RobotMethodLibraries;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 
 /**

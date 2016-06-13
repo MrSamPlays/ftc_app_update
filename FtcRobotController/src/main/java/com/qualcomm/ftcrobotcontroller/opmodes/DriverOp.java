@@ -36,6 +36,13 @@ public abstract class DriverOp extends CustomOpMode {
 
     public abstract void initialize();
 
+    public enum runState {
+        IDLE,
+        RUNNING,
+        SHUTDOWN,
+        ERROR
+    }
+
     public double scaleInput(double d) {
         double[] br = {0, 0.1, 0.2, 0.2, 0.2, 0.5, 0.7, 0.7, 0.9, 1, 1};
         int index = (int) Math.round(d);
@@ -63,11 +70,11 @@ public abstract class DriverOp extends CustomOpMode {
 
     private void getLocation(){
         if(controllerLocation){
-            holder1=gamepad1.left_stick_y;
-            holder2=gamepad1.right_stick_y;
-        }else{
-            holder2=gamepad1.left_stick_y;
             holder1=gamepad1.right_stick_y;
+            holder2=gamepad1.left_stick_y;
+        }else{
+            holder2=gamepad1.right_stick_y;
+            holder1=gamepad1.left_stick_y;
         }
     }
 
@@ -79,13 +86,14 @@ public abstract class DriverOp extends CustomOpMode {
         getLocation();
 
         BL.setPower(holder1);
-        BL.setPower(holder2);
+        BR.setPower(holder2);
     }
 
     public void runOpMode() throws InterruptedException{
         initialize();
         waitForStart();
         while (opModeIsActive()) {
+            handleUpdates();
             oneRun();
         }
     }

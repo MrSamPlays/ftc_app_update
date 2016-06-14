@@ -1,0 +1,17 @@
+Current version V2.0.0.2
+Changelog --
+         V2.0.0.2
+         debug logs!!
+         now easier to bugfix
+         @see below for details
+         
+         V2.0.0.1
+         Things happened
+         Did stuff
+         Modified debug scripts
+         Changes made
+         We couldn't be more specific
+         
+         V2
+         The new way to do stuff...
+         Initial commits

@@ -1,6 +1,7 @@
 package com.qualcomm.ftcrobotcontroller.console;
 
 import com.qualcomm.ftcrobotcontroller.ApiHandler;
+import com.qualcomm.robotcore.robocol.Telemetry;
 
 public class Console {
     private static ConsoleType consoleObject= ApiHandler.getConsole();
@@ -27,5 +28,9 @@ public class Console {
 
     public static void warn(Object message){
         consoleObject.warn(message.toString());
+    }
+
+    public static void addTelemetry(Telemetry telemetry){
+        consoleObject.addTelemetry(telemetry);
     }
 }

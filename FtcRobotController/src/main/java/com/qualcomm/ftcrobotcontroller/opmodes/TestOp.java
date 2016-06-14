@@ -1,6 +1,7 @@
 package com.qualcomm.ftcrobotcontroller.opmodes;
 
 import com.qualcomm.ftccommon.DbgLog;
+import com.qualcomm.ftcrobotcontroller.console.Console;
 import com.qualcomm.ftcrobotcontroller.drivers.TouchSensor;
 import com.qualcomm.hardware.hitechnic.HiTechnicNxtColorSensor;
 import com.qualcomm.robotcore.hardware.ColorSensor;
@@ -75,13 +76,14 @@ public class TestOp extends DriverOp {
     @Override
     public void runOpMode() throws InterruptedException {
         initialize();
+        Console.addTelemetry(telemetry);
         waitForStart();
-        DbgLog.msg("hahaha you got me!!");
         startTime = System.currentTimeMillis();
         t = new ShutDownIn(this);
         t.setDaemon(true);
 
         t.start();
+
         while (opModeIsActive()) {
             if (!reversed) {
                 BL.setPower(gamepad1.left_stick_y);

@@ -6,27 +6,21 @@ import com.qualcomm.ftcrobotcontroller.errorHandle.ErrorHandleType;
 import com.qualcomm.ftcrobotcontroller.errorHandle.JavaErrorHandler;
 
 public class ApiHandler {
-    public static void init(){
-        consoles[0]=new JavaConsole();
-
-        errorHandlers[0]=new JavaErrorHandler();
-    }
-
     //////////////////////////////////
     //Error Handlers                //
     //////////////////////////////////
-    private static ErrorHandleType[] errorHandlers=new ErrorHandleType[2];
+    private static ErrorHandleType errorHandler=new JavaErrorHandler();
 
     public static ErrorHandleType getErrorHandler(){
-        return errorHandlers[0];
+        return errorHandler;
     }
 
     //////////////////////////////////
     //Consoles                      //
     //////////////////////////////////
-    private static ConsoleType[] consoles=new ConsoleType[2];
+    private static ConsoleType console=new JavaConsole();
 
     public static ConsoleType getConsole(){
-        return consoles[0];
+        return console;
     }
 }

@@ -1,6 +1,5 @@
 package com.qualcomm.ftcrobotcontroller.opmodes;
 
-import com.qualcomm.ftccommon.DbgLog;
 import com.qualcomm.ftcrobotcontroller.console.Console;
 import com.qualcomm.ftcrobotcontroller.drivers.TouchSensor;
 import com.qualcomm.hardware.hitechnic.HiTechnicNxtColorSensor;
@@ -9,7 +8,6 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorController;
 import com.qualcomm.robotcore.hardware.LegacyModule;
 import com.qualcomm.robotcore.hardware.UltrasonicSensor;
-import com.qualcomm.robotcore.util.RobotLog;
 
 
 /**
@@ -64,7 +62,6 @@ public class TestOp extends DriverOp {
         r = hardwareMap.ultrasonicSensor.get("ultra");
         legMod.enable9v(5, true);
         legMod.enableAnalogReadMode(5);
-
         TouchSensor.init();
     }
 

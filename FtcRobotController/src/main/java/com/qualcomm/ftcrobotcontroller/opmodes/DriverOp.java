@@ -89,7 +89,7 @@ public abstract class DriverOp extends CustomOpMode {
         BR.setPower(holder2);
     }
 
-    public void runOpMode() throws InterruptedException{
+    public void runOpMode() throws InterruptedException {
         initialize();
         waitForStart();
         while (opModeIsActive()) {

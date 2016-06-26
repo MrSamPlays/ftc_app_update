@@ -23,11 +23,6 @@ public class Drive extends DriverOp {
     }
     @Override
     public void oneRun() {
-        Telemetry e = null;
-        try {
-            e.addData("problem", "haha");
-        }catch (Error e0){
-            ErrorHandle.handle(e0);
-        }
+
     }
 }

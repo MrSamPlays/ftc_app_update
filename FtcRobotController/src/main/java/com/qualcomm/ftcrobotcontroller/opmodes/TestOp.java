@@ -23,27 +23,7 @@ public class TestOp extends DriverOp {
     private HiTechnicNxtColorSensor e;
     com.qualcomm.robotcore.hardware.TouchSensor touch;
     private UltrasonicSensor r;
-
     private boolean reversed = false;
-    Thread t = null;
-    long startTime;
-    class ShutDownIn extends Thread {
-        TestOp t;
-        public ShutDownIn(TestOp e) {
-            this.t = e;
-        }
-        @Override
-        public void run() {
-            System.out.println("Shutdown Sequence initialized");
-            while (true) {
-                if (System.currentTimeMillis() > startTime + 120000) {
-                    System.out.println("SHUTTING DOWN");
-                    break;
-                }
-            }
-            t.stop();
-        }
-    }
 
     @Override
     public void initialize() {
@@ -75,11 +55,6 @@ public class TestOp extends DriverOp {
         initialize();
         Console.addTelemetry(telemetry);
         waitForStart();
-        startTime = System.currentTimeMillis();
-        t = new ShutDownIn(this);
-        t.setDaemon(true);
-
-        t.start();
 
         while (opModeIsActive()) {
             if (!reversed) {

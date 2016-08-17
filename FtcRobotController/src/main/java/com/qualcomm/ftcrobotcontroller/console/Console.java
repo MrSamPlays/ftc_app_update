@@ -3,9 +3,10 @@ package com.qualcomm.ftcrobotcontroller.console;
 import com.qualcomm.ftcrobotcontroller.ApiHandler;
 import com.qualcomm.robotcore.robocol.Telemetry;
 
-public class Console {
-    private static ConsoleType consoleObject= ApiHandler.getConsole();
+import java.io.FileWriter;
 
+public class Console {
+    private static ConsoleType consoleObject = ApiHandler.getConsole();
     public static void log(String message){
         consoleObject.log(message);
     }
@@ -33,4 +34,6 @@ public class Console {
     public static void addTelemetry(Telemetry telemetry){
         consoleObject.addTelemetry(telemetry);
     }
+
+    public static void addFile(FileWriter writer) { consoleObject.addFile(writer); }
 }

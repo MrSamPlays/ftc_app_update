@@ -2,6 +2,8 @@ package com.qualcomm.ftcrobotcontroller.console;
 
 import com.qualcomm.robotcore.robocol.Telemetry;
 
+import java.io.FileWriter;
+
 public interface ConsoleType {
     public void log(String message);
 
@@ -10,4 +12,6 @@ public interface ConsoleType {
     public void warn(String message);
 
     public void addTelemetry(Telemetry telemetry);
+
+    public void addFile(FileWriter writer);
 }

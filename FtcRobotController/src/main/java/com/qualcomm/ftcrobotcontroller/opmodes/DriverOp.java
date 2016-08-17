@@ -1,5 +1,8 @@
 package com.qualcomm.ftcrobotcontroller.opmodes;
 
+import com.qualcomm.ftcrobotcontroller.ShutDownIn;
+import com.qualcomm.ftcrobotcontroller.compass.Compass;
+import com.qualcomm.ftcrobotcontroller.console.Console;
 import com.qualcomm.hardware.hitechnic.HiTechnicNxtColorSensor;
 import com.qualcomm.robotcore.hardware.ColorSensor;
 import com.qualcomm.robotcore.hardware.DcMotor;
@@ -12,36 +15,13 @@ public abstract class DriverOp extends CustomOpMode {
     protected ColorSensor c;
     protected HiTechnicNxtColorSensor e;
     protected boolean reversed = false;
-    long startTime = System.currentTimeMillis();
-    public class ShutDownIn extends Thread {
-        TestOp t;
-        public ShutDownIn(TestOp e) {
-            this.t = e;
-        }
-        @Override
-        public void run() {
-            System.out.println("Shutdown Sequence initialized");
-            while (true) {
-                if (System.currentTimeMillis() > startTime + 120000) {
-                    System.out.println("SHUTTING DOWN");
-                    break;
-                }
-            }
-            t.stop();
-        }
-    }
+    protected Thread timer=new ShutDownIn(this, 120);
+
     public static LegacyModule getLegMod() {
         return legMod;
     }
 
     public abstract void initialize();
-
-    public enum runState {
-        IDLE,
-        RUNNING,
-        SHUTDOWN,
-        ERROR
-    }
 
     public double scaleInput(double d) {
         double[] br = {0, 0.1, 0.2, 0.2, 0.2, 0.5, 0.7, 0.7, 0.9, 1, 1};
@@ -95,6 +75,7 @@ public abstract class DriverOp extends CustomOpMode {
         while (opModeIsActive()) {
             handleUpdates();
             oneRun();
+            Console.log(Compass.currentDegreeRad);
         }
     }
 

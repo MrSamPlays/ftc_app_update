@@ -1,5 +1,6 @@
 package com.qualcomm.ftcrobotcontroller.math;
 
+
 public class Tuple<X,Y> {
     public X x;
     public Y y;

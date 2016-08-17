@@ -1,5 +1,8 @@
 package com.qualcomm.ftcrobotcontroller.opmodes;
 
+import com.qualcomm.ftcrobotcontroller.ShutDownIn;
+import com.qualcomm.ftcrobotcontroller.compass.Compass;
+import com.qualcomm.ftcrobotcontroller.console.Console;
 import com.qualcomm.hardware.hitechnic.HiTechnicNxtColorSensor;
 import com.qualcomm.robotcore.hardware.ColorSensor;
 import com.qualcomm.robotcore.hardware.DcMotor;
@@ -12,24 +15,8 @@ public abstract class DriverOp extends CustomOpMode {
     protected ColorSensor c;
     protected HiTechnicNxtColorSensor e;
     protected boolean reversed = false;
-    long startTime = System.currentTimeMillis();
-    public class ShutDownIn extends Thread {
-        TestOp t;
-        public ShutDownIn(TestOp e) {
-            this.t = e;
-        }
-        @Override
-        public void run() {
-            System.out.println("Shutdown Sequence initialized");
-            while (true) {
-                if (System.currentTimeMillis() > startTime + 120000) {
-                    System.out.println("SHUTTING DOWN");
-                    break;
-                }
-            }
-            t.stop();
-        }
-    }
+    protected Thread timer=new ShutDownIn(this, 120);
+
     public static LegacyModule getLegMod() {
         return legMod;
     }
@@ -63,11 +50,11 @@ public abstract class DriverOp extends CustomOpMode {
 
     private void getLocation(){
         if(controllerLocation){
-            holder1=gamepad1.left_stick_y;
-            holder2=gamepad1.right_stick_y;
-        }else{
-            holder2=gamepad1.left_stick_y;
             holder1=gamepad1.right_stick_y;
+            holder2=gamepad1.left_stick_y;
+        }else{
+            holder2=gamepad1.right_stick_y;
+            holder1=gamepad1.left_stick_y;
         }
     }
 
@@ -79,14 +66,16 @@ public abstract class DriverOp extends CustomOpMode {
         getLocation();
 
         BL.setPower(holder1);
-        BL.setPower(holder2);
+        BR.setPower(holder2);
     }
 
-    public void runOpMode() throws InterruptedException{
+    public void runOpMode() throws InterruptedException {
         initialize();
         waitForStart();
         while (opModeIsActive()) {
+            handleUpdates();
             oneRun();
+            Console.log(Compass.currentDegreeRad);
         }
     }
 

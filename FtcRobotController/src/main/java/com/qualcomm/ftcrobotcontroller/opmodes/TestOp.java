@@ -1,5 +1,6 @@
 package com.qualcomm.ftcrobotcontroller.opmodes;
 
+import com.qualcomm.ftcrobotcontroller.console.Console;
 import com.qualcomm.ftcrobotcontroller.drivers.TouchSensor;
 import com.qualcomm.hardware.hitechnic.HiTechnicNxtColorSensor;
 import com.qualcomm.robotcore.hardware.ColorSensor;
@@ -22,27 +23,7 @@ public class TestOp extends DriverOp {
     private HiTechnicNxtColorSensor e;
     com.qualcomm.robotcore.hardware.TouchSensor touch;
     private UltrasonicSensor r;
-
     private boolean reversed = false;
-    Thread t = null;
-    long startTime;
-    class ShutDownIn extends Thread {
-        TestOp t;
-        public ShutDownIn(TestOp e) {
-            this.t = e;
-        }
-        @Override
-        public void run() {
-            System.out.println("Shutdown Sequence initialized");
-            while (true) {
-                if (System.currentTimeMillis() > startTime + 120000) {
-                    System.out.println("SHUTTING DOWN");
-                    break;
-                }
-            }
-            t.stop();
-        }
-    }
 
     @Override
     public void initialize() {
@@ -61,7 +42,6 @@ public class TestOp extends DriverOp {
         r = hardwareMap.ultrasonicSensor.get("ultra");
         legMod.enable9v(5, true);
         legMod.enableAnalogReadMode(5);
-
         TouchSensor.init();
     }
 
@@ -73,12 +53,9 @@ public class TestOp extends DriverOp {
     @Override
     public void runOpMode() throws InterruptedException {
         initialize();
+        Console.addTelemetry(telemetry);
         waitForStart();
-        startTime = System.currentTimeMillis();
-        t = new ShutDownIn(this);
-        t.setDaemon(true);
 
-        t.start();
         while (opModeIsActive()) {
             if (!reversed) {
                 BL.setPower(gamepad1.left_stick_y);

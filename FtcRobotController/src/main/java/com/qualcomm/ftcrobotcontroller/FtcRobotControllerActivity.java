@@ -70,6 +70,7 @@ import com.qualcomm.ftccommon.FtcRobotControllerService.FtcRobotControllerBinder
 import com.qualcomm.ftccommon.LaunchActivityConstantsList;
 import com.qualcomm.ftccommon.Restarter;
 import com.qualcomm.ftccommon.UpdateUI;
+import com.qualcomm.ftcrobotcontroller.compass.Compass;
 import com.qualcomm.ftcrobotcontroller.opmodes.FtcOpModeRegister;
 import com.qualcomm.hardware.HardwareFactory;
 import com.qualcomm.robotcore.hardware.configuration.Utility;
@@ -84,7 +85,7 @@ import java.io.Serializable;
 import java.util.Queue;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
-public class FtcRobotControllerActivity extends Activity implements SensorEventListener{
+public class FtcRobotControllerActivity extends Activity implements SensorEventListener {
 
     public static final String CONFIGURE_FILENAME = "CONFIGURE_FILENAME";
     private static final int REQUEST_CONFIG_WIFI_CHANNEL = 1;
@@ -217,6 +218,8 @@ public class FtcRobotControllerActivity extends Activity implements SensorEventL
         // ATTENTION: This was auto-generated to implement the App Indexing API.
         // See https://g.co/AppIndexing/AndroidStudio for more information.
         client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
+
+        Compass.init(this);
     }
 
     @Override
@@ -264,12 +267,16 @@ public class FtcRobotControllerActivity extends Activity implements SensorEventL
     protected void onResume() {
         super.onResume();
         sensorManager.registerListener(this, accel, SensorManager.SENSOR_DELAY_GAME);
+
+        Compass.resume(this);
     }
 
     @Override
     public void onPause() {
         super.onPause();
         sensorManager.unregisterListener(this);
+
+        Compass.pause(this);
     }
 
     @Override
@@ -474,7 +481,7 @@ public class FtcRobotControllerActivity extends Activity implements SensorEventL
     }
     @Override
     public void onSensorChanged(SensorEvent event) {
-
+        Compass.changed(event);
     }
 
     @Override

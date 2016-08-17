@@ -65,6 +65,7 @@ public class FtcOpModeRegister implements OpModeRegister {
         manager.register("Driver", Drive.class);
         manager.register("Test", TestOp.class);
         manager.register("Ultrasonic Test", UltrasonicTest.class);
+        manager.register("Auto", AutoOp.class);
 
 
     /*

@@ -45,7 +45,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
     android:id="@+id/top_bar"
     android:layout_width="fill_parent"
     android:layout_height="80dp"
-    android:background="@color/black">
+    android:background="#d54b00">
     <ImageView
       android:id="@+id/robotIcon"
       android:layout_width="40dp"
@@ -80,7 +80,8 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
       android:layout_alignParentEnd="true"
       android:layout_centerInParent="true"
       android:layout_centerHorizontal="true"
-      android:layout_margin="10dp"/>
+      android:layout_margin="10dp"
+        android:foreground="#ffc3b8" />
 
   </RelativeLayout>
   <!-- end of black bar -->
@@ -96,7 +97,8 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin" >
+    android:paddingTop="@dimen/activity_vertical_margin"
+      android:background="#6f85ff">
 
     <TextView
       android:id="@+id/textWifiDirectStatus"

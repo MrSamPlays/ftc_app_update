@@ -1,6 +1,12 @@
 package com.qualcomm.ftcrobotcontroller.opmodes;
 
+import android.content.Context;
+import android.content.res.Resources;
+import android.graphics.Bitmap;
+
+import com.qualcomm.ftcrobotcontroller.R;
 import com.qualcomm.ftcrobotcontroller.apis.console.Console;
+import com.qualcomm.ftcrobotcontroller.apis.map.AndroidImageLoader;
 import com.qualcomm.ftcrobotcontroller.drivers.TouchSensor;
 import com.qualcomm.hardware.hitechnic.HiTechnicNxtColorSensor;
 import com.qualcomm.robotcore.hardware.ColorSensor;
@@ -9,21 +15,16 @@ import com.qualcomm.robotcore.hardware.DcMotorController;
 import com.qualcomm.robotcore.hardware.LegacyModule;
 import com.qualcomm.robotcore.hardware.UltrasonicSensor;
 
-
-/**
- * Created by sam on 15-Mar-16.
- */
-
 public class TestOp extends DriverOp {
     private static LegacyModule legMod;
-    boolean LEDisEnabled = false;
     private DcMotor BL;
     private DcMotor BR;
     private ColorSensor c;
     private HiTechnicNxtColorSensor e;
-    com.qualcomm.robotcore.hardware.TouchSensor touch;
+    private com.qualcomm.robotcore.hardware.TouchSensor touch;
     private UltrasonicSensor r;
     private boolean reversed = false;
+    private Bitmap bitmap;
 
     @Override
     public void initialize() {
@@ -43,6 +44,7 @@ public class TestOp extends DriverOp {
         legMod.enable9v(5, true);
         legMod.enableAnalogReadMode(5);
         TouchSensor.init();
+        bitmap = AndroidImageLoader.decodeSampledBitmapFromResource(R.drawable.background, 10, 10);
     }
 
     @Override

@@ -1,7 +1,6 @@
 package com.qualcomm.ftcrobotcontroller;
 
 import com.qualcomm.ftcrobotcontroller.compass.Compass;
-import com.qualcomm.ftcrobotcontroller.math.Converter;
 
 public class Robot {
     public static final double wheel_radius_cm = 5;

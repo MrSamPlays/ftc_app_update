@@ -1,9 +1,9 @@
-package com.qualcomm.ftcrobotcontroller.errorHandle;
+package com.qualcomm.ftcrobotcontroller.apis.errorHandle;
 
 import java.io.PrintWriter;
 import java.io.StringWriter;
 
-import com.qualcomm.ftcrobotcontroller.console.Console;
+import com.qualcomm.ftcrobotcontroller.apis.console.Console;
 
 public class JavaErrorHandler implements ErrorHandleType {
     @Override

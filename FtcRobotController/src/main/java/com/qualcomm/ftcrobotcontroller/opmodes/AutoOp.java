@@ -2,8 +2,8 @@ package com.qualcomm.ftcrobotcontroller.opmodes;
 
 import com.qualcomm.ftcrobotcontroller.Robot;
 import com.qualcomm.ftcrobotcontroller.compass.Compass;
-import com.qualcomm.ftcrobotcontroller.console.Console;
-import com.qualcomm.ftcrobotcontroller.errorHandle.ErrorHandle;
+import com.qualcomm.ftcrobotcontroller.apis.console.Console;
+import com.qualcomm.ftcrobotcontroller.apis.errorHandle.ErrorHandle;
 import com.qualcomm.ftcrobotcontroller.math.Tuple;
 import com.qualcomm.ftcrobotcontroller.math.Vector2;
 import com.qualcomm.robotcore.hardware.DcMotor;
@@ -12,7 +12,6 @@ import com.qualcomm.robotcore.hardware.LegacyModule;
 
 import java.io.File;
 import java.io.FileWriter;
-import java.io.IOError;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;

@@ -1,4 +1,4 @@
-package com.qualcomm.ftcrobotcontroller.console;
+package com.qualcomm.ftcrobotcontroller.apis.console;
 
 import com.qualcomm.robotcore.robocol.Telemetry;
 

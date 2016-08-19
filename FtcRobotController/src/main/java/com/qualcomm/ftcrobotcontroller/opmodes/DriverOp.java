@@ -2,7 +2,7 @@ package com.qualcomm.ftcrobotcontroller.opmodes;
 
 import com.qualcomm.ftcrobotcontroller.ShutDownIn;
 import com.qualcomm.ftcrobotcontroller.compass.Compass;
-import com.qualcomm.ftcrobotcontroller.console.Console;
+import com.qualcomm.ftcrobotcontroller.apis.console.Console;
 import com.qualcomm.hardware.hitechnic.HiTechnicNxtColorSensor;
 import com.qualcomm.robotcore.hardware.ColorSensor;
 import com.qualcomm.robotcore.hardware.DcMotor;

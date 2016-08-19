@@ -1,6 +1,6 @@
-package com.qualcomm.ftcrobotcontroller.console;
+package com.qualcomm.ftcrobotcontroller.apis.console;
 
-import com.qualcomm.ftcrobotcontroller.ApiHandler;
+import com.qualcomm.ftcrobotcontroller.apis.ApiHandler;
 import com.qualcomm.robotcore.robocol.Telemetry;
 
 import java.io.FileWriter;

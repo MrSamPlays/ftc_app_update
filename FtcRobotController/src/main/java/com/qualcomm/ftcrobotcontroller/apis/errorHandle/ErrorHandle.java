@@ -1,6 +1,6 @@
-package com.qualcomm.ftcrobotcontroller.errorHandle;
+package com.qualcomm.ftcrobotcontroller.apis.errorHandle;
 
-import com.qualcomm.ftcrobotcontroller.ApiHandler;
+import com.qualcomm.ftcrobotcontroller.apis.ApiHandler;
 
 public class ErrorHandle {
     private static ErrorHandleType errorObject=ApiHandler.getErrorHandler();

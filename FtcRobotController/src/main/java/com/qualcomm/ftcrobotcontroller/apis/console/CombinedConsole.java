@@ -1,8 +1,7 @@
-package com.qualcomm.ftcrobotcontroller.console;
+package com.qualcomm.ftcrobotcontroller.apis.console;
 
-import com.qualcomm.ftcrobotcontroller.errorHandle.ErrorHandle;
+import com.qualcomm.ftcrobotcontroller.apis.errorHandle.ErrorHandle;
 import com.qualcomm.robotcore.robocol.Telemetry;
-import com.qualcomm.robotcore.util.RobotLog;
 
 import java.io.FileWriter;
 import java.text.SimpleDateFormat;

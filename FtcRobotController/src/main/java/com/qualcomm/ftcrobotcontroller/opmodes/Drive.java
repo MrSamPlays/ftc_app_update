@@ -1,10 +1,8 @@
 package com.qualcomm.ftcrobotcontroller.opmodes;
 
-import com.qualcomm.ftcrobotcontroller.console.Console;
-import com.qualcomm.ftcrobotcontroller.errorHandle.ErrorHandle;
+import com.qualcomm.ftcrobotcontroller.apis.console.Console;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorController;
-import com.qualcomm.robotcore.robocol.Telemetry;
 
 public class Drive extends DriverOp {
     @Override

@@ -1,6 +1,6 @@
 package com.qualcomm.ftcrobotcontroller.opmodes;
 
-import com.qualcomm.ftcrobotcontroller.console.Console;
+import com.qualcomm.ftcrobotcontroller.apis.console.Console;
 import com.qualcomm.ftcrobotcontroller.drivers.TouchSensor;
 import com.qualcomm.hardware.hitechnic.HiTechnicNxtColorSensor;
 import com.qualcomm.robotcore.hardware.ColorSensor;

@@ -17,6 +17,7 @@ import com.qualcomm.robotcore.hardware.UltrasonicSensor;
 
 public class TestOp extends DriverOp {
     private static LegacyModule legMod;
+    private boolean LEDisEnabled;
     private DcMotor BL;
     private DcMotor BR;
     private ColorSensor c;

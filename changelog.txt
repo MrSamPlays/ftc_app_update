@@ -1,3 +1,31 @@
+<<<<<<< Updated upstream
+Current Version
+V2.0.0.3
+
+Changelog --
+V2.0.0.3
+It crashes and burns
+V2.0.0.2
+debug logs!!
+now easier to bugfix
+@see below for details
+
+V2.0.0.1
+Things happened
+Did stuff
+Modified debug scripts
+Changes made
+We couldn't be more specific
+
+
+V2
+The new way to do stuff...
+Initial commits
+
+Considering/WIP --
+Autonomous navigation (very hard task)
+Autonomous dead reckoning (hard task)
+=======
 Current version V2.0.0.2
 Changelog --
          V2.0.0.2
@@ -15,3 +43,4 @@ Changelog --
          V2
          The new way to do stuff...
          Initial commits
+>>>>>>> Stashed changes

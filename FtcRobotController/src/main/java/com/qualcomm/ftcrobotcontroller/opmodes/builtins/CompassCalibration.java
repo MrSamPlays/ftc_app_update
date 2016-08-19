@@ -59,7 +59,7 @@ public class CompassCalibration extends OpMode {
 
   @Override
   public void init() {
-    compass = hardwareMap.compassSensor.get("compass");
+    compass = hardwareMap.compassSensor.get("Compass");
     motorRight = hardwareMap.dcMotor.get("right");
     motorLeft = hardwareMap.dcMotor.get("left");
   }
@@ -69,7 +69,7 @@ public class CompassCalibration extends OpMode {
 
     motorRight.setDirection(DcMotor.Direction.REVERSE);
 
-    // Set the compass to calibration mode
+    // Set the Compass to calibration mode
     compass.setMode(CompassSensor.CompassMode.CALIBRATION_MODE);
     telemetry.addData("Compass", "Compass in calibration mode");
 
@@ -105,7 +105,7 @@ public class CompassCalibration extends OpMode {
         motorRight.setPower(0.0);
         motorLeft.setPower(0.0);
 
-        // change compass mode
+        // change Compass mode
         compass.setMode(CompassSensor.CompassMode.MEASUREMENT_MODE);
 
         // set a new pauseTime

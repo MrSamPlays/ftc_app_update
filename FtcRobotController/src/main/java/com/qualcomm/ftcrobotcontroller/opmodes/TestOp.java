@@ -76,13 +76,6 @@ public class TestOp extends DriverOp {
                 BR.setMode(DcMotorController.RunMode.RUN_USING_ENCODERS);
             }
             if (gamepad1.b) {
-                if (!LEDisEnabled) {
-                    c.enableLed(true);
-                    LEDisEnabled = true;
-                } else {
-                    c.enableLed(false);
-                    LEDisEnabled = false;
-                }
                 sleep(100);
             }
             if (gamepad1.guide) {

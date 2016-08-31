@@ -70,7 +70,6 @@ import com.qualcomm.ftccommon.FtcRobotControllerService.FtcRobotControllerBinder
 import com.qualcomm.ftccommon.LaunchActivityConstantsList;
 import com.qualcomm.ftccommon.Restarter;
 import com.qualcomm.ftccommon.UpdateUI;
-import com.qualcomm.ftcrobotcontroller.compass.Compass;
 import com.qualcomm.ftcrobotcontroller.opmodes.FtcOpModeRegister;
 import com.qualcomm.hardware.HardwareFactory;
 import com.qualcomm.robotcore.hardware.configuration.Utility;
@@ -91,10 +90,10 @@ public class FtcRobotControllerActivity extends Activity implements SensorEventL
     private static final int REQUEST_CONFIG_WIFI_CHANNEL = 1;
     private static final boolean USE_DEVICE_EMULATION = false;
     private static final int NUM_GAMEPADS = 2;
-    protected WifiManager.WifiLock wifiLock;
-    protected SharedPreferences preferences;
     public SensorManager sensorManager;
     public Sensor accel;
+    protected WifiManager.WifiLock wifiLock;
+    protected SharedPreferences preferences;
     protected UpdateUI.Callback callback;
     protected Context context;
     protected ImageButton buttonMenu;
@@ -218,8 +217,6 @@ public class FtcRobotControllerActivity extends Activity implements SensorEventL
         // ATTENTION: This was auto-generated to implement the App Indexing API.
         // See https://g.co/AppIndexing/AndroidStudio for more information.
         client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
-
-        Compass.init(this);
     }
 
     @Override
@@ -266,17 +263,13 @@ public class FtcRobotControllerActivity extends Activity implements SensorEventL
     @Override
     protected void onResume() {
         super.onResume();
-        sensorManager.registerListener(this, accel, SensorManager.SENSOR_DELAY_GAME);
-
-        Compass.resume(this);
+        sensorManager.registerListener(this, accel, SensorManager.SENSOR_DELAY_FASTEST);
     }
 
     @Override
     public void onPause() {
         super.onPause();
         sensorManager.unregisterListener(this);
-
-        Compass.pause(this);
     }
 
     @Override
@@ -472,20 +465,21 @@ public class FtcRobotControllerActivity extends Activity implements SensorEventL
         });
     }
 
+    @Override
+    public void onSensorChanged(SensorEvent event) {
+
+    }
+
+    @Override
+    public void onAccuracyChanged(Sensor sensor, int accuracy) {
+
+    }
+
     protected class RobotRestarter implements Restarter {
 
         public void requestRestart() {
             requestRobotRestart();
         }
-
-    }
-    @Override
-    public void onSensorChanged(SensorEvent event) {
-        Compass.changed(event);
-    }
-
-    @Override
-    public void onAccuracyChanged(Sensor sensor, int accuracy) {
 
     }
 }

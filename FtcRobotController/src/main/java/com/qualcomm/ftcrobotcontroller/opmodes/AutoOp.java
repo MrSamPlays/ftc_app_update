@@ -1,7 +1,6 @@
 package com.qualcomm.ftcrobotcontroller.opmodes;
 
 import com.qualcomm.ftcrobotcontroller.Robot;
-import com.qualcomm.ftcrobotcontroller.compass.Compass;
 import com.qualcomm.ftcrobotcontroller.console.Console;
 import com.qualcomm.ftcrobotcontroller.errorHandle.ErrorHandle;
 import com.qualcomm.ftcrobotcontroller.math.Tuple;
@@ -30,7 +29,7 @@ public class AutoOp extends CustomOpMode {
         double yDelta = -end.y - start.y;
         double magnitude = Math.sqrt(Math.pow(xDelta, 2) + Math.pow(yDelta, 2));
         double theta = Math.atan2(yDelta, xDelta);
-        double angleToTurn = theta - Robot.getAngle();
+        double angleToTurn = theta;
         return new Tuple<Double, Double>(magnitude, angleToTurn);
     }
 
@@ -42,7 +41,7 @@ public class AutoOp extends CustomOpMode {
             BL.setMode(DcMotorController.RunMode.RUN_USING_ENCODERS);
             BR.setMode(DcMotorController.RunMode.RUN_USING_ENCODERS);
             ++i;
-        } while (BL.getCurrentPosition() != 0 && BR.getCurrentPosition() != 0);
+        } while (BL.getCurrentPosition() != 0 || BR.getCurrentPosition() != 0);
         Console.log("Encoders reset Successfully in " + i + " tries");
     }
 
@@ -68,7 +67,6 @@ public class AutoOp extends CustomOpMode {
 
         BL.setDirection(DcMotor.Direction.REVERSE);
         resetEncoders();
-        Robot.angle_difference_rad = Compass.currentDegreeRad;
     }
 
     @Override
@@ -89,9 +87,6 @@ public class AutoOp extends CustomOpMode {
         Console.log("Issue?");
 
         //while (Converter.clicksToRad(BL.getCurrentPosition()) * 2 * Math.PI < rots) {
-        while (Robot.getAngle() < rots) {
-            Console.log("\n Heading: " + Compass.currentDegreeRad);
-        }
 
         //BL.setPower(1);
         //BR.setPower(1);

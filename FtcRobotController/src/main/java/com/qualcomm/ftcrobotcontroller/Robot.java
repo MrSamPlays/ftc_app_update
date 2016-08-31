@@ -1,6 +1,5 @@
 package com.qualcomm.ftcrobotcontroller;
 
-import com.qualcomm.ftcrobotcontroller.compass.Compass;
 import com.qualcomm.ftcrobotcontroller.math.Converter;
 
 public class Robot {
@@ -11,8 +10,4 @@ public class Robot {
     public static  final double wheel_rot_for_full_turn_pivot = 10;
 
     public static double angle_difference_rad;
-
-    public static double getAngle() {
-        return Compass.currentDegreeRad - angle_difference_rad;
-    }
 }

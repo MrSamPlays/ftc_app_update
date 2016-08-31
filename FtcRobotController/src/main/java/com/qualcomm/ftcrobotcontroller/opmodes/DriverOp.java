@@ -1,7 +1,6 @@
 package com.qualcomm.ftcrobotcontroller.opmodes;
 
 import com.qualcomm.ftcrobotcontroller.ShutDownIn;
-import com.qualcomm.ftcrobotcontroller.compass.Compass;
 import com.qualcomm.ftcrobotcontroller.console.Console;
 import com.qualcomm.hardware.hitechnic.HiTechnicNxtColorSensor;
 import com.qualcomm.robotcore.hardware.ColorSensor;
@@ -75,7 +74,6 @@ public abstract class DriverOp extends CustomOpMode {
         while (opModeIsActive()) {
             handleUpdates();
             oneRun();
-            Console.log(Compass.currentDegreeRad);
         }
     }
 

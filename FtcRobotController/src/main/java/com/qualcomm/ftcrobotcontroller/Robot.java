@@ -1,7 +1,5 @@
 package com.qualcomm.ftcrobotcontroller;
 
-import com.qualcomm.ftcrobotcontroller.compass.Compass;
-
 public class Robot {
     public static final double wheel_radius_cm = 5;
     public static final double length_cm = 45.4;
@@ -10,8 +8,4 @@ public class Robot {
     public static  final double wheel_rot_for_full_turn_pivot = 10;
 
     public static double angle_difference_rad;
-
-    public static double getAngle() {
-        return Compass.currentDegreeRad - angle_difference_rad;
-    }
 }

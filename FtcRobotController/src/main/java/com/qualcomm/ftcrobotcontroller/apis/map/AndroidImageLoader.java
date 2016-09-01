@@ -4,11 +4,16 @@ import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 
+import com.qualcomm.ftcrobotcontroller.FtcRobotControllerActivity;
+import com.qualcomm.ftcrobotcontroller.apis.ApiHandler;
+
 public class AndroidImageLoader {
+    public static void workWithBitmap(Bitmap bitmap) {
+        bitmap.getPixel(0, 0);
+    }
+
     public static Bitmap decodeSampledBitmapFromResource(int resId, int reqWidth, int reqHeight) {
-        // TODO Figure this out -\
-        // TODO                  \/
-        Resources res;
+        Resources res = ApiHandler.getResources();
         // First decode with inJustDecodeBounds=true to check dimensions
         final BitmapFactory.Options options = new BitmapFactory.Options();
         options.inJustDecodeBounds = true;

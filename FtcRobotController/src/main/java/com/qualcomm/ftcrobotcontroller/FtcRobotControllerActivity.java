@@ -70,7 +70,7 @@ import com.qualcomm.ftccommon.FtcRobotControllerService.FtcRobotControllerBinder
 import com.qualcomm.ftccommon.LaunchActivityConstantsList;
 import com.qualcomm.ftccommon.Restarter;
 import com.qualcomm.ftccommon.UpdateUI;
-import com.qualcomm.ftcrobotcontroller.compass.Compass;
+import com.qualcomm.ftcrobotcontroller.apis.ApiHandler;
 import com.qualcomm.ftcrobotcontroller.opmodes.FtcOpModeRegister;
 import com.qualcomm.hardware.HardwareFactory;
 import com.qualcomm.robotcore.hardware.configuration.Utility;
@@ -218,8 +218,6 @@ public class FtcRobotControllerActivity extends Activity implements SensorEventL
         // ATTENTION: This was auto-generated to implement the App Indexing API.
         // See https://g.co/AppIndexing/AndroidStudio for more information.
         client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
-
-        Compass.init(this);
     }
 
     @Override
@@ -254,29 +252,27 @@ public class FtcRobotControllerActivity extends Activity implements SensorEventL
                 Action.TYPE_VIEW, // TODO: choose an action type.
                 "FtcRobotController Page", // TODO: Define a title for the content shown.
                 // TODO: If you have web page content that matches this app activity's content,
-                // make sure this auto-generated web page URL is correct.
-                // Otherwise, set the URL to null.
+                // TODO: make sure this auto-generated web page URL is correct.
+                // TODO: Otherwise, set the URL to null.
                 Uri.parse("http://host/path"),
                 // TODO: Make sure this auto-generated app deep link URI is correct.
                 Uri.parse("android-app://com.qualcomm.ftcrobotcontroller/http/host/path")
         );
         AppIndex.AppIndexApi.start(client, viewAction);
+
+        ApiHandler.addResources(getResources()); // TODO Find out if this is correct.
     }
 
     @Override
     protected void onResume() {
         super.onResume();
         sensorManager.registerListener(this, accel, SensorManager.SENSOR_DELAY_GAME);
-
-        Compass.resume(this);
     }
 
     @Override
     public void onPause() {
         super.onPause();
         sensorManager.unregisterListener(this);
-
-        Compass.pause(this);
     }
 
     @Override
@@ -481,7 +477,6 @@ public class FtcRobotControllerActivity extends Activity implements SensorEventL
     }
     @Override
     public void onSensorChanged(SensorEvent event) {
-        Compass.changed(event);
     }
 
     @Override

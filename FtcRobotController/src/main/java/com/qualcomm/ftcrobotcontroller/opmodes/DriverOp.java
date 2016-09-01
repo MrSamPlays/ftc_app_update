@@ -1,7 +1,6 @@
 package com.qualcomm.ftcrobotcontroller.opmodes;
 
 import com.qualcomm.ftcrobotcontroller.ShutDownIn;
-import com.qualcomm.ftcrobotcontroller.compass.Compass;
 import com.qualcomm.ftcrobotcontroller.apis.console.Console;
 import com.qualcomm.hardware.hitechnic.HiTechnicNxtColorSensor;
 import com.qualcomm.robotcore.hardware.ColorSensor;
@@ -15,7 +14,7 @@ public abstract class DriverOp extends CustomOpMode {
     protected ColorSensor c;
     protected HiTechnicNxtColorSensor e;
     protected boolean reversed = false;
-    protected Thread timer=new ShutDownIn(this, 120);
+    protected Thread timer = new ShutDownIn(this, 120);
 
     public static LegacyModule getLegMod() {
         return legMod;
@@ -42,14 +41,14 @@ public abstract class DriverOp extends CustomOpMode {
     //False- left stick
     //True- right stick
     private boolean controllerLocation;
-    private boolean lastSwap=reversed;
+    private boolean lastSwap = reversed;
 
     //Powers- confusing, remember to explain these.
     float holder1;
     float holder2;
 
-    private void getLocation(){
-        if(controllerLocation){
+    private void getLocation() {
+        if(controllerLocation) {
             holder1=gamepad1.right_stick_y;
             holder2=gamepad1.left_stick_y;
         }else{
@@ -58,8 +57,8 @@ public abstract class DriverOp extends CustomOpMode {
         }
     }
 
-    private void handleUpdates(){
-        if(reversed!=lastSwap){
+    private void handleUpdates() {
+        if(reversed!=lastSwap) {
             controllerLocation=!controllerLocation;
         }
 
@@ -75,7 +74,7 @@ public abstract class DriverOp extends CustomOpMode {
         while (opModeIsActive()) {
             handleUpdates();
             oneRun();
-            Console.log(Compass.currentDegreeRad);
+            Console.log(0);
         }
     }
 
